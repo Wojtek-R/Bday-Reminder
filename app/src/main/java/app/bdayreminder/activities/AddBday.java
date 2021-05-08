@@ -29,17 +29,22 @@ public class AddBday extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+                    PersonModel personModel;
 
                     try {
-                        PersonModel personModel = new PersonModel(-1, name.getText().toString(), surname.getText().toString());
+                        personModel = new PersonModel(-1, name.getText().toString(), surname.getText().toString());
                         Toast.makeText(AddBday.this, "Birthday added", Toast.LENGTH_SHORT).show();
                     }
                     catch (Exception e) {
                         Toast.makeText(AddBday.this, "Error adding Birthday", Toast.LENGTH_SHORT).show();
+                        personModel = new PersonModel(-1,"error", "error");
                     }
 
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(AddBday.this);
 
+                    boolean success = dataBaseHelper.addOne(personModel);
 
+                    Toast.makeText(AddBday.this, "Success = "+ success, Toast.LENGTH_SHORT).show();
                 }
         });
 
