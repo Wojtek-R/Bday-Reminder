@@ -15,11 +15,14 @@ public class PersonModel {
 
     @Override
     public String toString() {
-        return "PersonModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';
+
+        return id + ".  " + name + "  " + surname;
+
+//        return "PersonModel{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", surname='" + surname + '\'' +
+//                '}';
     }
 
     //getters and setters

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
         List<PersonModel> everyone = dataBaseHelper.getEveryone();
 
+        //displaying db data in a list view
         ArrayAdapter personArrayAdapter = new ArrayAdapter<PersonModel>(MainActivity.this, android.R.layout.simple_list_item_1, everyone);
         listView.setAdapter(personArrayAdapter);
 
@@ -37,15 +38,10 @@ public class MainActivity extends AppCompatActivity {
         addBdayBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                //opening new activity (add birthday page) on click
                 Intent intent=new Intent(MainActivity.this, AddBday.class);
                 startActivity(intent);
             }
         });
-    }
-
-
-
-    public void goTo(View view){
-        Button addBirthday = findViewById(R.id.main_addBtn);
     }
 }
