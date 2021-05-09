@@ -2,10 +2,14 @@ package app.bdayreminder.activities;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -49,4 +53,34 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<PersonModel> getEveryone(){
+        List<PersonModel> returnList = new ArrayList<>();
+
+        //getting data form the database
+        String queryString = " SELECT * FROM " + PERSON_TABLE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()){
+            do{
+                int personID = cursor.getInt(0);
+                String personName = cursor.getString(1);
+                String personSurname = cursor.getString(2);
+
+                PersonModel newPerson = new PersonModel(personID, personName, personSurname);
+                returnList.add(newPerson);
+
+            }while (cursor.moveToNext());
+        }
+        else{
+            //fail, do not add anything to the list.
+        }
+
+        //close both the cursor and the db when done.
+        cursor.close();
+        db.close();
+        return returnList;
+    }
 }
