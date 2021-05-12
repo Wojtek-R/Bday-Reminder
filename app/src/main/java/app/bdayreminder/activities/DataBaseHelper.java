@@ -16,6 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String PERSON_TABLE = "PERSON_TABLE";
     public static final String COLUMN_PERSON_NAME = "PERSON_NAME";
     public static final String COLUMN_PERSON_SURNAME = "PERSON_SURNAME";
+    public static final String COLUMN_PERSON_DOB = "PERSON_DOB";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "person.db", null, 1);
@@ -24,7 +25,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     //called when database accessed for the first time
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + PERSON_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PERSON_NAME + " TEXT, " + COLUMN_PERSON_SURNAME + " TEXT )";
+        String createTableStatement = "CREATE TABLE " + PERSON_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PERSON_NAME + " TEXT, " + COLUMN_PERSON_SURNAME + " TEXT, " + COLUMN_PERSON_DOB + " TEXT )";
 
         db.execSQL(createTableStatement);
     }
@@ -43,6 +44,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         cv.put(COLUMN_PERSON_NAME, personModel.getName());
         cv.put(COLUMN_PERSON_SURNAME, personModel.getSurname());
+        cv.put(COLUMN_PERSON_DOB, personModel.getDob());
 
         long insert = db.insert(PERSON_TABLE, null, cv);
         if (insert == -1){
@@ -68,8 +70,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 int personID = cursor.getInt(0);
                 String personName = cursor.getString(1);
                 String personSurname = cursor.getString(2);
+                String personDob = cursor.getString(3);
 
-                PersonModel newPerson = new PersonModel(personID, personName, personSurname);
+                PersonModel newPerson = new PersonModel(personID, personName, personSurname, personDob);
                 returnList.add(newPerson);
 
             }while (cursor.moveToNext());
