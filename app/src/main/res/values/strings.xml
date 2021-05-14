@@ -2,7 +2,7 @@
     <string name="app_name">Bday Reminder</string>
 
     //strings for error messages
-    <string name="nameError">Please enter a valid name</string>
-    <string name="surnameError">Please enter a valid Surname</string>
-    <string name="dateError">Valid date format: dd/mm/yyyy </string>
+    <string name="nameError">Enter a valid name</string>
+    <string name="surnameError">Enter a valid Surname</string>
+    <string name="dateError">Enter a valid date format: dd/mm/yyyy </string>
 </resources>

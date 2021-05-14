@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import androidx.appcompat.widget.Toolbar;
+
 public class AddBday extends AppCompatActivity {
 
     //references
@@ -32,6 +34,10 @@ public class AddBday extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bday);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //choosing validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
