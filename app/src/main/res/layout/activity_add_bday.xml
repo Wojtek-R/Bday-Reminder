@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="DD/MM/YYYY"
+        android:hint="Dob: dd/mm/yyyy"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/addBday_saveBdayBtn"
         app:layout_constraintEnd_toEndOf="parent"
