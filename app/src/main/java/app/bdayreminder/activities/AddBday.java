@@ -109,7 +109,6 @@ public class AddBday extends AppCompatActivity {
                 }
             }
         });
-
     }
     //inflating the setting item option on click
     @Override
