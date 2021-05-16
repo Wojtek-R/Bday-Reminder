@@ -86,4 +86,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
         return returnList;
     }
+
+    public boolean deleteAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("DELETE FROM " + PERSON_TABLE);
+        return true;
+    }
 }

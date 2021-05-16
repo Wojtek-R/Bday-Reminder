@@ -2,9 +2,13 @@ package app.bdayreminder.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,8 +28,8 @@ import androidx.appcompat.widget.Toolbar;
 
 public class AddBday extends AppCompatActivity {
 
-    //references
-    Button saveBdayBtn;
+    //declaring variables
+    Button saveBdayBtn, addReminder;
     EditText name, surname, dob;
 
     private AwesomeValidation awesomeValidation;
@@ -35,6 +39,7 @@ public class AddBday extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bday);
 
+        //setting toolbar as the app bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -42,7 +47,9 @@ public class AddBday extends AppCompatActivity {
         //choosing validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-        saveBdayBtn=(Button)findViewById(R.id.addBday_saveBdayBtn);
+        //referencing
+        saveBdayBtn = findViewById(R.id.addBday_saveBdayBtn);
+        addReminder = findViewById(R.id.btn_reminder);
         name = findViewById(R.id.addBday_name);
         surname = findViewById(R.id.addBday_surname);
         dob = findViewById(R.id.addBday_et_Dob);
@@ -56,8 +63,6 @@ public class AddBday extends AppCompatActivity {
         saveBdayBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
 
                     if (awesomeValidation.validate()) {
                         PersonModel personModel;
@@ -79,29 +84,50 @@ public class AddBday extends AppCompatActivity {
                         }
 
                         DataBaseHelper dataBaseHelper = new DataBaseHelper(AddBday.this);
-
                         boolean success = dataBaseHelper.addOne(personModel);
-
                         Toast.makeText(AddBday.this, "Success = "+ success, Toast.LENGTH_SHORT).show();
+
                     } else {
                     }
-
-                }
-
-        });
-
-        name.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-
                 }
         });
 
-        surname.setOnClickListener(new View.OnClickListener(){
+        addReminder.setOnClickListener(new View.OnClickListener() {
             @Override
+            //method for adding events to calendar with inserted values
             public void onClick(View v) {
 
+                if (awesomeValidation.validate()) {
+
+                    Intent intent = new Intent(Intent.ACTION_INSERT);
+                    intent.setData(CalendarContract.Events.CONTENT_URI);
+                    intent.putExtra(CalendarContract.Events.TITLE, name.getText().toString() + "'s Birthday");
+                    intent.putExtra(CalendarContract.Events.ALL_DAY, true);
+                    startActivity(intent);
+
+                } else {
+                }
             }
         });
+
+    }
+    //inflating the setting item option on click
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+        return true;
+    }
+    //method for creating actions on menu item selected
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.settings:
+                Intent intent=new Intent(AddBday.this, Settings.class);
+                startActivity(intent);
+                break;
+        }
+        return false;
     }
 }
