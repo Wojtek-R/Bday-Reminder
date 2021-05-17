@@ -2,18 +2,23 @@ package app.bdayreminder.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Person;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 //import android.widget.Toolbar
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -39,28 +44,47 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        listView = findViewById(R.id.main_lv);
+        addBdayBtn = findViewById(R.id.main_addBtn);
+
+
         //setting toolbar as the app bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        listView = (ListView)findViewById(R.id.main_lv);
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
         List<PersonModel> everyone = dataBaseHelper.getEveryone();
 
         //displaying db data in a list view
-        ArrayAdapter personArrayAdapter = new ArrayAdapter<PersonModel>(MainActivity.this, android.R.layout.simple_list_item_1, everyone);
+        ArrayAdapter personArrayAdapter = new ArrayAdapter<PersonModel>(MainActivity.this, R.layout.custom_list_item, everyone);
         listView.setAdapter(personArrayAdapter);
 
-        addBdayBtn=(Button)findViewById(R.id.main_addBtn);
         addBdayBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 //opening new activity (add birthday page) on click
-                Intent intent=new Intent(MainActivity.this, AddBday.class);
+                Intent intent = new Intent(MainActivity.this, AddBday.class);
                 startActivity(intent);
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PersonModel clickedPerson = (PersonModel) parent.getItemAtPosition(position);
+
+                Intent personInfo = new Intent(MainActivity.this, PersonDetail.class);
+                personInfo.putExtra("PERSON_SELECTED", clickedPerson);
+
+//                String item = listView.getItemAtPosition(position).toString();
+//                Toast.makeText(MainActivity.this,"You selected : " + item,Toast.LENGTH_SHORT).show();
+
+//                Intent intent = new Intent(MainActivity.this, PersonDetail.class);
+
+                startActivity(personInfo);
+            }
+        });
+
     }
     //inflating the setting item option on click
     @Override

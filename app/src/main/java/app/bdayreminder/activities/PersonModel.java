@@ -1,8 +1,11 @@
 package app.bdayreminder.activities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class PersonModel {
+public class PersonModel implements Parcelable {
 
     private int id;
     private String name;
@@ -16,6 +19,25 @@ public class PersonModel {
         this.surname = surname;
         this.dob = dob;
     }
+
+    protected PersonModel(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        surname = in.readString();
+        dob = in.readString();
+    }
+
+    public static final Creator<PersonModel> CREATOR = new Creator<PersonModel>() {
+        @Override
+        public PersonModel createFromParcel(Parcel in) {
+            return new PersonModel(in);
+        }
+
+        @Override
+        public PersonModel[] newArray(int size) {
+            return new PersonModel[size];
+        }
+    };
 
     @Override
     //creating customized string output
@@ -58,5 +80,18 @@ public class PersonModel {
 
     public String getDob() {
         return dob;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(surname);
+        dest.writeString(dob);
     }
 }
