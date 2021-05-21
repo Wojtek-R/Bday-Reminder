@@ -97,7 +97,11 @@ public class AddBday extends AppCompatActivity {
 
                         DataBaseHelper dataBaseHelper = new DataBaseHelper(AddBday.this);
                         boolean success = dataBaseHelper.addOne(personModel);
-                        Toast.makeText(AddBday.this, "Success = "+ success, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(AddBday.this, "Success = "+ success, Toast.LENGTH_SHORT).show();
+
+                        name.setText("");
+                        surname.setText("");
+                        dob.setText("");
 
                     } else {
                     }

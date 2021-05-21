@@ -14,6 +14,7 @@ import java.util.List;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static final String PERSON_TABLE = "PERSON_TABLE";
+    public static final String COLUMN_ID = "ID";
     public static final String COLUMN_PERSON_NAME = "PERSON_NAME";
     public static final String COLUMN_PERSON_SURNAME = "PERSON_SURNAME";
     public static final String COLUMN_PERSON_DOB = "PERSON_DOB";
@@ -89,7 +90,25 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteAll() {
         SQLiteDatabase db = this.getReadableDatabase();
-        db.execSQL("DELETE FROM " + PERSON_TABLE);
+        db.execSQL("DELETE FROM " + PERSON_TABLE );
+//        db.execSQL("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME=" + PERSON_TABLE);
         return true;
+    }
+
+    public boolean deleteOne(PersonModel personModel){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + PERSON_TABLE + " WHERE " + COLUMN_ID + " = " + personModel.getId() +
+                "; DELETE FROM sqlite_sequence WHERE name= " + PERSON_TABLE;
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()){
+            return  true;
+        }
+        else {
+            return false;
+        }
+//        return true;
     }
 }
