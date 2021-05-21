@@ -6,21 +6,17 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class PersonDetail extends AppCompatActivity {
 
     Button btDelete;
-    EditText etName;
+    EditText etName, etSurname, etDob;
 
     public static final String PREFS_NAME = "prefs";
     public static final String PREF_DARK_THEME = "dark_theme";
@@ -40,6 +36,8 @@ public class PersonDetail extends AppCompatActivity {
 
         btDelete = findViewById(R.id.btn_delete);
         etName = findViewById(R.id.et_name);
+        etSurname = findViewById(R.id.et_surname);
+        etDob = findViewById(R.id.et_dob);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,12 +47,22 @@ public class PersonDetail extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
 //        String message = "Birthdays " + intent.getParcelableExtra("PERSON_SELECTED").toString();
-        String message = "Birthdays " + bundle.getString("personName").toString();
+        String name = bundle.getString("personName");
+        etName.setText(name);
+
+        String surname = bundle.getString("personSurname");
+        etSurname.setText(surname);
+
+        String dob = bundle.getString("dob");
+        etDob.setText(dob);
 
 //        TextView myText = findViewById(R.id.textView);
-//
 //        myText.setText(message);
-        etName.setText(message);
+
+        etName.setText("");
+        etSurname.setText("");
+        etDob.setText("");
+
 
         btDelete.setOnClickListener(new View.OnClickListener() {
             @Override
