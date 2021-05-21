@@ -56,24 +56,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-//    public boolean updateOne(PersonModel personModel) {
-//
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//
-//        cv.put(COLUMN_PERSON_NAME, personModel.getName());
-//        cv.put(COLUMN_PERSON_SURNAME, personModel.getSurname());
-//        cv.put(COLUMN_PERSON_DOB, personModel.getDob());
-//
-//        long update = db.update(PERSON_TABLE, cv, "ID = " + personModel.getId());
+    public boolean updateOne(PersonModel personModel, String name, String surname, String dob) {
 
-//        if (insert == -1){
-//            return false;
-//        }
-//        else{
-//            return true;
-//        }
-//    }
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_PERSON_NAME, name);
+        cv.put(COLUMN_PERSON_SURNAME, surname);
+        cv.put(COLUMN_PERSON_DOB, dob);
+
+        int id = personModel.getId();
+
+        long update = db.update(PERSON_TABLE, cv, "ID ="+ id, null );
+
+        if (update == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
 
     public List<PersonModel> getEveryone(){

@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class PersonDetail extends AppCompatActivity {
 
-    Button btDelete;
+    Button btnDelete, btnUpdate;
     EditText etName, etSurname, etDob;
 
     public static final String PREFS_NAME = "prefs";
@@ -34,7 +34,8 @@ public class PersonDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_detail);
 
-        btDelete = findViewById(R.id.btn_delete);
+        btnDelete = findViewById(R.id.btn_delete);
+        btnUpdate = findViewById(R.id.btn_update);
         etName = findViewById(R.id.et_name);
         etSurname = findViewById(R.id.et_surname);
         etDob = findViewById(R.id.et_dob);
@@ -59,12 +60,9 @@ public class PersonDetail extends AppCompatActivity {
 //        TextView myText = findViewById(R.id.textView);
 //        myText.setText(message);
 
-        etName.setText("");
-        etSurname.setText("");
-        etDob.setText("");
 
 
-        btDelete.setOnClickListener(new View.OnClickListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
@@ -72,9 +70,30 @@ public class PersonDetail extends AppCompatActivity {
 
                 dataBaseHelper.deleteOne(intent.getParcelableExtra("PERSON_SELECTED"));
                 Toast.makeText(PersonDetail.this, "Birthday removed", Toast.LENGTH_SHORT).show();
+
+                etName.setText("");
+                etSurname.setText("");
+                etDob.setText("");
             }
         });
 
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
+                Intent intent = getIntent();
+
+
+
+                dataBaseHelper.updateOne(intent.getParcelableExtra("PERSON_SELECTED"), String.valueOf(etName.getText()),
+                        String.valueOf(etSurname.getText()), String.valueOf(etDob.getText()) );
+                Toast.makeText(PersonDetail.this, "Birthday updated", Toast.LENGTH_SHORT).show();
+
+                etName.setText("");
+                etSurname.setText("");
+                etDob.setText("");
+            }
+        });
     }
 
     //inflating the setting item option on click
