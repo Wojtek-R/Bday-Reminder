@@ -139,8 +139,12 @@ public class AddBday extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.settings:
-                Intent intent=new Intent(AddBday.this, Settings.class);
+                Intent intent = new Intent(AddBday.this, Settings.class);
                 startActivity(intent);
+                break;
+            case R.id.home:
+                Intent intent1 = new Intent(AddBday.this, MainActivity.class);
+                startActivity(intent1);
                 break;
         }
         return false;

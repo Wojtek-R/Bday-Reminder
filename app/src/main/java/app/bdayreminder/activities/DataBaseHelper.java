@@ -91,7 +91,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public boolean deleteAll() {
         SQLiteDatabase db = this.getReadableDatabase();
         db.execSQL("DELETE FROM " + PERSON_TABLE );
-//        db.execSQL("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME=" + PERSON_TABLE);
+//        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME=" + PERSON_TABLE);
         return true;
     }
 

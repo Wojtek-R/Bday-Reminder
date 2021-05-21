@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -72,5 +73,17 @@ public class Settings extends AppCompatActivity {
         finish();
 
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.home:
+                Intent intent1 = new Intent(Settings.this, MainActivity.class);
+                startActivity(intent1);
+                break;
+        }
+        return false;
     }
 }
