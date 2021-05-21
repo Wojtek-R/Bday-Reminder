@@ -56,6 +56,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+//    public boolean updateOne(PersonModel personModel) {
+//
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues cv = new ContentValues();
+//
+//        cv.put(COLUMN_PERSON_NAME, personModel.getName());
+//        cv.put(COLUMN_PERSON_SURNAME, personModel.getSurname());
+//        cv.put(COLUMN_PERSON_DOB, personModel.getDob());
+//
+//        long update = db.update(PERSON_TABLE, cv, "ID = " + personModel.getId());
+
+//        if (insert == -1){
+//            return false;
+//        }
+//        else{
+//            return true;
+//        }
+//    }
+
+
     public List<PersonModel> getEveryone(){
         List<PersonModel> returnList = new ArrayList<>();
 
@@ -98,8 +118,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public boolean deleteOne(PersonModel personModel){
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + PERSON_TABLE + " WHERE " + COLUMN_ID + " = " + personModel.getId() +
-                "; DELETE FROM sqlite_sequence WHERE name= " + PERSON_TABLE;
+        String queryString = "DELETE FROM " + PERSON_TABLE + " WHERE " + COLUMN_ID + " = " + personModel.getId();
 
         Cursor cursor = db.rawQuery(queryString, null);
 

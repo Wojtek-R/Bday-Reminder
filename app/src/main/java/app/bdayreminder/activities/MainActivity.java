@@ -73,13 +73,11 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PersonModel clickedPerson = (PersonModel) parent.getItemAtPosition(position);
 
+                String personName = clickedPerson.getName();
+
                 Intent personInfo = new Intent(MainActivity.this, PersonDetail.class);
                 personInfo.putExtra("PERSON_SELECTED", clickedPerson);
-
-//                String item = listView.getItemAtPosition(position).toString();
-//                Toast.makeText(MainActivity.this,"You selected : " + item,Toast.LENGTH_SHORT).show();
-
-//                Intent intent = new Intent(MainActivity.this, PersonDetail.class);
+                personInfo.putExtra("personName", personName);
 
                 startActivity(personInfo);
             }
