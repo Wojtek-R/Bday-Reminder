@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    //default colors
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,7 +9,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="darkColorPrimary">#1e2756</color>
+    //changed colors
+    <color name="blue_500">#FF2196F3</color>
+    <color name="blue_700">#212F3D</color>
+    <color name="bgColor">#F5FDFF</color>
+    <color name="orange">#ffae05</color>
+
+    //dark mode colors
+<!--    <color name="darkColorPrimary">#1e2756</color>-->
+<!--    <color name="darkColorPrimaryDark">#141831</color>-->
+<!--    <color name="darkColorAccent">#2aac4b</color>   -->
+    <color name="darkColorPrimary">#164C96</color>
     <color name="darkColorPrimaryDark">#141831</color>
-    <color name="darkColorAccent">#2aac4b</color>
+    <color name="darkColorAccent">#f07201</color>
+    <color name="darkColorBackground">#3C3C44</color>
 </resources>
