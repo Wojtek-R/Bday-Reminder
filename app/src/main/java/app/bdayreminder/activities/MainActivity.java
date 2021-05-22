@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         //setting toolbar as the app bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        getSupportActionBar().setIcon(getDrawable(R.drawable.ic_balloons));
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
         List<PersonModel> everyone = dataBaseHelper.getEveryone();
@@ -104,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.settings:
                 Intent intent=new Intent(MainActivity.this, Settings.class);
                 startActivity(intent);
+                break;
+            case R.id.info:
+                Intent intent1 = new Intent(MainActivity.this, AppInfo.class);
+                startActivity(intent1);
                 break;
         }
         return false;

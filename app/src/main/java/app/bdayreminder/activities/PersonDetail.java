@@ -132,6 +132,10 @@ public class PersonDetail extends AppCompatActivity {
                 Intent intent1 = new Intent(PersonDetail.this, MainActivity.class);
                 startActivity(intent1);
                 break;
+            case R.id.info:
+                Intent intent2 = new Intent(PersonDetail.this, AppInfo.class);
+                startActivity(intent2);
+                break;
         }
         return false;
     }
