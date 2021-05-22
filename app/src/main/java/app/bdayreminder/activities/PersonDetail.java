@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+
 public class PersonDetail extends AppCompatActivity {
 
     Button btnDelete, btnUpdate;
@@ -20,6 +23,8 @@ public class PersonDetail extends AppCompatActivity {
 
     public static final String PREFS_NAME = "prefs";
     public static final String PREF_DARK_THEME = "dark_theme";
+
+    private AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +39,18 @@ public class PersonDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_detail);
 
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+
         btnDelete = findViewById(R.id.btn_delete);
         btnUpdate = findViewById(R.id.btn_update);
         etName = findViewById(R.id.et_name);
         etSurname = findViewById(R.id.et_surname);
         etDob = findViewById(R.id.et_dob);
+
+        //regex expressions for fields validation
+        awesomeValidation.addValidation(this, R.id.et_name, "^[a-zA-Z]+$", R.string.nameError);
+        awesomeValidation.addValidation(this, R.id.et_surname, "^[a-zA-Z]+$", R.string.surnameError);
+        awesomeValidation.addValidation(this, R.id.et_dob, "[0-9]{1,2}(/|-)[0-9]{1,2}(/|-)[0-9]{4}", R.string.dateError);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,18 +92,21 @@ public class PersonDetail extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
-                Intent intent = getIntent();
 
+                if (awesomeValidation.validate()) {
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
+                    Intent intent = getIntent();
 
+                    dataBaseHelper.updateOne(intent.getParcelableExtra("PERSON_SELECTED"), String.valueOf(etName.getText()),
+                            String.valueOf(etSurname.getText()), String.valueOf(etDob.getText()) );
+                    Toast.makeText(PersonDetail.this, "Birthday updated", Toast.LENGTH_SHORT).show();
 
-                dataBaseHelper.updateOne(intent.getParcelableExtra("PERSON_SELECTED"), String.valueOf(etName.getText()),
-                        String.valueOf(etSurname.getText()), String.valueOf(etDob.getText()) );
-                Toast.makeText(PersonDetail.this, "Birthday updated", Toast.LENGTH_SHORT).show();
+                    etName.setText("");
+                    etSurname.setText("");
+                    etDob.setText("");
+                } else {
+                }
 
-                etName.setText("");
-                etSurname.setText("");
-                etDob.setText("");
             }
         });
     }

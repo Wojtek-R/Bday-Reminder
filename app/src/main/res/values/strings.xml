@@ -4,5 +4,5 @@
     //strings for error messages
     <string name="nameError">Enter a valid name</string>
     <string name="surnameError">Enter a valid Surname</string>
-    <string name="dateError">Enter a valid date format: dd/mm/yyyy </string>
+    <string name="dateError">Enter valid date: dd/mm/yyyy </string>
 </resources>
