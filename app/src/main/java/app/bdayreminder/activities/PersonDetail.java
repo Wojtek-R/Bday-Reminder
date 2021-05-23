@@ -3,6 +3,10 @@ package app.bdayreminder.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -77,15 +81,33 @@ public class PersonDetail extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
-                Intent intent = getIntent();
 
-                dataBaseHelper.deleteOne(intent.getParcelableExtra("PERSON_SELECTED"));
-                Toast.makeText(PersonDetail.this, "Birthday removed", Toast.LENGTH_SHORT).show();
+                //Displaying confirmation alert dialog
+                AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(PersonDetail.this);
+                myAlertBuilder.setTitle("Are you sure?");
+                myAlertBuilder.setMessage("Do you wish to delete this birhday?");
+                myAlertBuilder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
+                        Intent intent = getIntent();
 
-                etName.setText("");
-                etSurname.setText("");
-                etDob.setText("");
+                        dataBaseHelper.deleteOne(intent.getParcelableExtra("PERSON_SELECTED"));
+
+                        etName.setText("");
+                        etSurname.setText("");
+                        etDob.setText("");
+
+                        Toast.makeText(PersonDetail.this, "Birthday Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                myAlertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(PersonDetail.this, "Canceled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                myAlertBuilder.show();
             }
         });
 
@@ -94,6 +116,7 @@ public class PersonDetail extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (awesomeValidation.validate()) {
+
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
                     Intent intent = getIntent();
 
@@ -101,9 +124,6 @@ public class PersonDetail extends AppCompatActivity {
                             String.valueOf(etSurname.getText()), String.valueOf(etDob.getText()) );
                     Toast.makeText(PersonDetail.this, "Birthday updated", Toast.LENGTH_SHORT).show();
 
-                    etName.setText("");
-                    etSurname.setText("");
-                    etDob.setText("");
                 } else {
                 }
 

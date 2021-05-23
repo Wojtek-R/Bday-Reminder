@@ -3,6 +3,8 @@ package app.bdayreminder.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -49,9 +51,26 @@ public class Settings extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                db.deleteAll();
 
-                Toast.makeText(Settings.this, "All entries deleted", Toast.LENGTH_SHORT).show();
+                //Displaying confirmation alert dialog
+                AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(Settings.this);
+                myAlertBuilder.setTitle("Are you sure?");
+                myAlertBuilder.setMessage("Do you wish to delete entire list of Birthdays?");
+                myAlertBuilder.setPositiveButton("Delete All", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        db.deleteAll();
+                        Toast.makeText(Settings.this, "All Birthdays List Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                myAlertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(Settings.this, "Canceled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                myAlertBuilder.show();
             }
         });
 
