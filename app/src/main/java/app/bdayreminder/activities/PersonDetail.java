@@ -85,7 +85,7 @@ public class PersonDetail extends AppCompatActivity {
                 //Displaying confirmation alert dialog
                 AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(PersonDetail.this);
                 myAlertBuilder.setTitle("Are you sure?");
-                myAlertBuilder.setMessage("Do you wish to delete this birhday?");
+                myAlertBuilder.setMessage("Do you wish to delete this birthday?");
                 myAlertBuilder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -117,16 +117,31 @@ public class PersonDetail extends AppCompatActivity {
 
                 if (awesomeValidation.validate()) {
 
-                    DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
-                    Intent intent = getIntent();
+                    //Displaying confirmation alert dialog
+                    AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(PersonDetail.this);
+                    myAlertBuilder.setTitle("Are you sure?");
+                    myAlertBuilder.setMessage("Do you wish to update this birthday?");
+                    myAlertBuilder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    dataBaseHelper.updateOne(intent.getParcelableExtra("PERSON_SELECTED"), String.valueOf(etName.getText()),
-                            String.valueOf(etSurname.getText()), String.valueOf(etDob.getText()) );
-                    Toast.makeText(PersonDetail.this, "Birthday updated", Toast.LENGTH_SHORT).show();
+                            DataBaseHelper dataBaseHelper = new DataBaseHelper(PersonDetail.this);
+                            Intent intent = getIntent();
 
+                            dataBaseHelper.updateOne(intent.getParcelableExtra("PERSON_SELECTED"), String.valueOf(etName.getText()),
+                                    String.valueOf(etSurname.getText()), String.valueOf(etDob.getText()) );
+                            Toast.makeText(PersonDetail.this, "Birthday updated", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    myAlertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(PersonDetail.this, "Canceled", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    myAlertBuilder.show();
                 } else {
                 }
-
             }
         });
     }

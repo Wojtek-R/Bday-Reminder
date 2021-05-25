@@ -51,13 +51,12 @@ public class MainActivity extends AppCompatActivity {
         //setting toolbar as the app bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setIcon(getDrawable(R.drawable.ic_balloons));
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
         List<PersonModel> everyone = dataBaseHelper.getEveryone();
 
         //displaying db data in a list view
-        ArrayAdapter personArrayAdapter = new ArrayAdapter<PersonModel>(MainActivity.this, R.layout.custom_list_item, everyone);
+        ArrayAdapter personArrayAdapter = new ArrayAdapter<PersonModel>(MainActivity.this, R.layout.custom_list_item, R.id.textData, everyone);
         listView.setAdapter(personArrayAdapter);
 
         addBdayBtn.setOnClickListener(new View.OnClickListener(){
