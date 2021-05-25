@@ -5,4 +5,18 @@
     <string name="nameError">Enter a valid name</string>
     <string name="surnameError">Enter a valid Surname</string>
     <string name="dateError">Enter valid date: dd/mm/yyyy </string>
+
+    //other strings
+    <string name="themeSwitch">Change application theme to dark mode</string>
+    <string name="dltBdays">Delete all Birthdays</string>
+    <string name="dltBdaysAlert">Caution! this operation cannot be reverted</string>
+    <string name="editBirthday">Edit selected birthday</string>
+    <string name="addBirthday">Please choose action</string>
+
+    //buttons
+    <string name="dltBtn">Delete</string>
+    <string name="updtBtn">Update</string>
+    <string name="addBtn">Add Birthday</string>
+    <string name="saveBtn">Save Birthday</string>
+    <string name="addRmdrBtn">Add Reminder</string>
 </resources>

@@ -42,14 +42,12 @@
         android:id="@+id/addBday_saveBdayBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
-        android:text="Save Birthday"
+        android:layout_marginBottom="240dp"
+        android:text="@string/saveBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addBday_surname"
-        app:layout_constraintVertical_bias="0.765" />
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/addBday_et_Dob"
@@ -71,10 +69,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Add Reminder"
+        android:text="@string/addRmdrBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addBday_saveBdayBtn" />
+
+    <TextView
+        android:id="@+id/tv_addBday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/addBirthday"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/addBday_saveBdayBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addBday_saveBdayBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/addBday_et_Dob"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

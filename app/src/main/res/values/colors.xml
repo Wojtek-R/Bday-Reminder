@@ -8,6 +8,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="warning">#ED6351</color>
 
     //changed colors
     <color name="blue_500">#FF2196F3</color>
@@ -16,9 +17,6 @@
     <color name="orange">#ffae05</color>
 
     //dark mode colors
-<!--    <color name="darkColorPrimary">#1e2756</color>-->
-<!--    <color name="darkColorPrimaryDark">#141831</color>-->
-<!--    <color name="darkColorAccent">#2aac4b</color>   -->
     <color name="darkColorPrimary">#164C96</color>
     <color name="darkColorPrimaryDark">#141831</color>
     <color name="darkColorAccent">#f07201</color>

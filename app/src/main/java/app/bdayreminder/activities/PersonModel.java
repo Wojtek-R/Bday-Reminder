@@ -43,7 +43,7 @@ public class PersonModel implements Parcelable {
     //creating customized string output
     public String toString() {
 
-        return "  " + name + "  " + surname + "    Birthday: " + dob;
+        return "  " + name + "  " + surname + "    Bday: " + dob;
 
 //        return "PersonModel{" +
 //                "id=" + id +
