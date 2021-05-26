@@ -76,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PersonModel clickedPerson = (PersonModel) parent.getItemAtPosition(position);
 
-                Bitmap personImage = clickedPerson.getImage();
+//                Bitmap personImage = clickedPerson.getImage();
                 String personName = clickedPerson.getName();
                 String personSurname = clickedPerson.getSurname();
                 String personDob = clickedPerson.getDob();
 
                 Intent personInfo = new Intent(MainActivity.this, PersonDetail.class);
                 personInfo.putExtra("PERSON_SELECTED", clickedPerson);
-                personInfo.putExtra("personImage", personImage);
+//                personInfo.putExtra("personImage", personImage);
                 personInfo.putExtra("personName", personName);
                 personInfo.putExtra("personSurname", personSurname);
                 personInfo.putExtra("dob", personDob);

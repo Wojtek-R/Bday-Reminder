@@ -53,7 +53,6 @@ public class PersonDetail extends AppCompatActivity {
         etName = findViewById(R.id.et_name);
         etSurname = findViewById(R.id.et_surname);
         etDob = findViewById(R.id.et_dob);
-        personPhoto = findViewById(R.id.iv_personPhoto);
 
         //regex expressions for fields validation
         awesomeValidation.addValidation(this, R.id.et_name, "^[a-zA-Z]+$", R.string.nameError);
@@ -67,8 +66,7 @@ public class PersonDetail extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        Bitmap bitmap = bundle.getParcelable("personImage");
-        personPhoto.setImageBitmap(bitmap);
+//        Bitmap bitmap = bundle.getParcelable("personImage");
 
         String name = bundle.getString("personName");
         etName.setText(name);
