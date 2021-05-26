@@ -9,12 +9,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -24,6 +26,7 @@ public class PersonDetail extends AppCompatActivity {
 
     Button btnDelete, btnUpdate;
     EditText etName, etSurname, etDob;
+    ImageView personPhoto;
 
     public static final String PREFS_NAME = "prefs";
     public static final String PREF_DARK_THEME = "dark_theme";
@@ -50,6 +53,7 @@ public class PersonDetail extends AppCompatActivity {
         etName = findViewById(R.id.et_name);
         etSurname = findViewById(R.id.et_surname);
         etDob = findViewById(R.id.et_dob);
+        personPhoto = findViewById(R.id.iv_personPhoto);
 
         //regex expressions for fields validation
         awesomeValidation.addValidation(this, R.id.et_name, "^[a-zA-Z]+$", R.string.nameError);
@@ -60,10 +64,12 @@ public class PersonDetail extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        Intent intent = getIntent();
+
         Bundle bundle = getIntent().getExtras();
 
-//        String message = "Birthdays " + intent.getParcelableExtra("PERSON_SELECTED").toString();
+        Bitmap bitmap = bundle.getParcelable("personImage");
+        personPhoto.setImageBitmap(bitmap);
+
         String name = bundle.getString("personName");
         etName.setText(name);
 
@@ -72,9 +78,6 @@ public class PersonDetail extends AppCompatActivity {
 
         String dob = bundle.getString("dob");
         etDob.setText(dob);
-
-//        TextView myText = findViewById(R.id.textView);
-//        myText.setText(message);
 
 
 

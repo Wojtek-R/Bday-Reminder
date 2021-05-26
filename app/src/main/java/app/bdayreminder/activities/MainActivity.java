@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Person;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 //import android.widget.Toolbar
@@ -73,12 +76,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PersonModel clickedPerson = (PersonModel) parent.getItemAtPosition(position);
 
+                Bitmap personImage = clickedPerson.getImage();
                 String personName = clickedPerson.getName();
                 String personSurname = clickedPerson.getSurname();
                 String personDob = clickedPerson.getDob();
 
                 Intent personInfo = new Intent(MainActivity.this, PersonDetail.class);
                 personInfo.putExtra("PERSON_SELECTED", clickedPerson);
+                personInfo.putExtra("personImage", personImage);
                 personInfo.putExtra("personName", personName);
                 personInfo.putExtra("personSurname", personSurname);
                 personInfo.putExtra("dob", personDob);

@@ -1,5 +1,6 @@
 package app.bdayreminder.activities;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,13 +9,15 @@ import java.util.Date;
 public class PersonModel implements Parcelable {
 
     private int id;
+    private Bitmap image;
     private String name;
     private String surname;
     private String dob;
 
     //constructor
-    public PersonModel(int id, String name, String surname, String dob) {
+    public PersonModel(int id,Bitmap image, String name, String surname, String dob) {
         this.id = id;
+        this.image = image;
         this.name = name;
         this.surname = surname;
         this.dob = dob;
@@ -22,6 +25,7 @@ public class PersonModel implements Parcelable {
 
     protected PersonModel(Parcel in) {
         id = in.readInt();
+        image = in.readParcelable(null);
         name = in.readString();
         surname = in.readString();
         dob = in.readString();
@@ -62,6 +66,10 @@ public class PersonModel implements Parcelable {
         this.id = id;
     }
 
+    public Bitmap getImage(){ return image; }
+
+    public void setImage(Bitmap image){ this.image = image; }
+
     public String getName() {
         return name;
     }
@@ -90,6 +98,7 @@ public class PersonModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
+        dest.writeParcelable(image, flags);
         dest.writeString(name);
         dest.writeString(surname);
         dest.writeString(dob);
