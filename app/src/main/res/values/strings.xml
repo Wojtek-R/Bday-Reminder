@@ -13,6 +13,14 @@
     <string name="editBirthday">Edit selected birthday</string>
     <string name="addBirthday">Please choose action</string>
 
+
+    <string name="appTitle">Bday Reminder</string>
+    <string name="appInfo">Bday Reminder application has been created to for saving birthdays of friends and family,
+        and setting a reminders, so you never forget about those birthdays again!</string>
+    <string name="appVersion">Version: 1.0 Alpha</string>
+    <string name="appCreator">Created by: Wojciech Reluga</string>
+
+
     //buttons
     <string name="dltBtn">Delete</string>
     <string name="updtBtn">Update</string>
