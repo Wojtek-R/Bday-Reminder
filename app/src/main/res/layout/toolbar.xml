@@ -11,10 +11,4 @@
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-<!--    <Button-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="?attr/actionBarSize"-->
-<!--        android:text="Settings"-->
-<!--        android:layout_gravity="right"-->
-<!--        />-->
 </androidx.appcompat.widget.Toolbar>
