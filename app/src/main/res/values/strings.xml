@@ -12,8 +12,10 @@
     <string name="dltBdaysAlert">Caution! this operation cannot be reverted</string>
     <string name="editBirthday">Edit selected birthday</string>
     <string name="addBirthday">Please choose action</string>
+    <string name="addImage">Click to add Profile Picture</string>
 
 
+    //info screen
     <string name="appTitle">Bday Reminder</string>
     <string name="appInfo">Bday Reminder application has been created to for saving birthdays of friends and family,
         and setting a reminders, so you never forget about those birthdays again!</string>
