@@ -63,7 +63,6 @@ public class PersonDetail extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         Bundle bundle = getIntent().getExtras();
 
 //        Bitmap bitmap = bundle.getParcelable("personImage");
